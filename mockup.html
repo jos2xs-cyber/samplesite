@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Private Guitar | Derek Neece – Fort Worth, Keller & Southlake</title>
+<style>
+  /* ── Reset & Base ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:       #0b1120;
+    --navy-mid:   #111827;
+    --navy-card:  #141e30;
+    --navy-hover: #1a2540;
+    --gold:       #c9973a;
+    --gold-light: #e0b85a;
+    --gold-muted: #a07828;
+    --white:      #f5f0e8;
+    --gray-text:  #9ca3af;
+    --gray-light: #d1d5db;
+    --placeholder:#2a3550;
+    --star:       #f5a623;
+    --radius:     8px;
+    --radius-lg:  14px;
+  }
+
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: var(--navy);
+    color: var(--white);
+    line-height: 1.7;
+  }
+
+  a { color: var(--gold); text-decoration: none; }
+  a:hover { color: var(--gold-light); text-decoration: underline; }
+
+  /* ── Utility ── */
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+  .section { padding: 72px 0; }
+  .section-alt { background: var(--navy-mid); }
+  .gold { color: var(--gold); }
+  .stars { color: var(--star); letter-spacing: 2px; }
+
+  /* ── NAV ── */
+  nav {
+    background: #080e1a;
+    border-bottom: 2px solid var(--gold-muted);
+    position: sticky; top: 0; z-index: 100;
+  }
+  .nav-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 24px; height: 64px;
+  }
+  .nav-logo {
+    font-size: 1.15rem; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--gold);
+  }
+  .nav-logo span { color: var(--white); font-weight: 400; }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { color: var(--gray-light); font-family: Arial, sans-serif; font-size: .85rem; letter-spacing: .5px; }
+  .nav-links a:hover { color: var(--gold); text-decoration: none; }
+  .nav-cta {
+    background: var(--gold); color: #000 !important; font-weight: 700;
+    padding: 8px 18px; border-radius: var(--radius); font-size: .82rem;
+    letter-spacing: .5px; text-transform: uppercase;
+  }
+  .nav-cta:hover { background: var(--gold-light) !important; text-decoration: none !important; }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    background: linear-gradient(135deg, #060c18 0%, #0d1929 60%, #1a2a0e 100%);
+    padding: 90px 0 80px;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 50% 120%, rgba(201,151,58,.08) 0%, transparent 70%),
+      repeating-linear-gradient(45deg, transparent, transparent 60px, rgba(201,151,58,.015) 60px, rgba(201,151,58,.015) 61px);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 1100px; margin: 0 auto; padding: 0 24px;
+    display: grid; grid-template-columns: 1fr 420px; gap: 60px; align-items: start;
+  }
+  .hero-eyebrow {
+    font-family: Arial, sans-serif; font-size: .82rem; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--gray-light); margin-bottom: 14px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .hero-eyebrow .eyebrow-guitar {
+    font-family: Georgia, serif; font-size: 1.55rem; font-weight: 700;
+    letter-spacing: 1px; color: var(--gold); text-transform: uppercase;
+    line-height: 1;
+  }
+  .hero-eyebrow .eyebrow-sep {
+    width: 1px; height: 22px; background: rgba(201,151,58,.4); flex-shrink: 0;
+  }
+  .hero h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.2; margin-bottom: 20px;
+    color: var(--white);
+  }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero-sub {
+    font-family: Arial, sans-serif; font-size: 1.05rem;
+    color: var(--gray-light); margin-bottom: 28px; max-width: 520px;
+  }
+  .hero-rating {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(255,255,255,.06); border: 1px solid rgba(201,151,58,.3);
+    border-radius: 40px; padding: 8px 18px; margin-bottom: 32px;
+    font-family: Arial, sans-serif; font-size: .92rem;
+  }
+  .g-badge {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: #fff; display: inline-flex; align-items: center; justify-content: center;
+    font-weight: 900; font-size: .72rem; font-family: Arial, sans-serif;
+    color: #4285f4; flex-shrink: 0; line-height: 1;
+  }
+  .hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+  .btn-primary {
+    background: var(--gold); color: #000;
+    font-family: Arial, sans-serif; font-weight: 700; font-size: .95rem;
+    padding: 14px 28px; border-radius: var(--radius); letter-spacing: .5px;
+    text-transform: uppercase; display: inline-block; transition: background .2s;
+  }
+  .btn-primary:hover { background: var(--gold-light); color: #000; text-decoration: none; }
+  .btn-secondary {
+    font-family: Arial, sans-serif; font-size: .95rem; color: var(--white);
+    border: 1px solid rgba(255,255,255,.3); padding: 13px 24px;
+    border-radius: var(--radius); display: inline-flex; align-items: center; gap: 8px;
+    transition: border-color .2s;
+  }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); text-decoration: none; }
+  .hero-img-wrap {
+    display: flex; flex-direction: row; align-items: flex-start; gap: 14px; align-self: start;
+  }
+  .hero-img-wrap > img {
+    flex: 1 1 auto; min-width: 0; height: auto;
+  }
+  .hero-cred-col {
+    flex: 0 0 128px; display: flex; flex-direction: column; gap: 10px; padding-top: 4px;
+  }
+  .hero-cred-cell {
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(201,151,58,.18);
+    border-radius: 8px; padding: 10px 8px;
+    display: flex; flex-direction: column; align-items: center; gap: 5px; text-align: center;
+  }
+  .hero-placeholder {
+    width: 100%; aspect-ratio: 4/5; max-width: 380px;
+    background: var(--placeholder);
+    border-radius: var(--radius-lg);
+    border: 2px dashed rgba(201,151,58,.3);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    color: var(--gray-text); font-family: Arial, sans-serif; font-size: .85rem;
+    gap: 10px;
+  }
+  .hero-placeholder .ph-icon { font-size: 2.5rem; opacity: .4; }
+
+  /* ── CREDENTIALS STRIP ── */
+  .cred-strip {
+    background: #080e1a;
+    border-top: 1px solid rgba(201,151,58,.2);
+    border-bottom: 1px solid rgba(201,151,58,.2);
+    padding: 18px 0;
+  }
+  .cred-strip-inner {
+    max-width: 1100px; margin: 0 auto; padding: 18px 24px;
+    display: flex; align-items: center; justify-content: center;
+    gap: 40px; flex-wrap: wrap;
+  }
+  .cred-logo-item {
+    display: flex; flex-direction: column; align-items: center; gap: 5px;
+  }
+  .cred-as-seen {
+    font-family: Arial, sans-serif; font-size: .62rem; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--gray-text);
+  }
+  .cred-badge {
+    display: flex; align-items: center; gap: 10px;
+    font-family: Arial, sans-serif; font-size: .82rem;
+    color: var(--gray-light); letter-spacing: .5px; text-transform: uppercase;
+  }
+  .cred-divider { width: 1px; height: 32px; background: rgba(255,255,255,.12); }
+
+  /* ── BIO ── */
+  .bio-inner {
+    display: grid; grid-template-columns: 200px 1fr; gap: 48px; align-items: start;
+  }
+  .bio-photo {
+    width: 180px; height: 180px; border-radius: 50%;
+    background: var(--placeholder);
+    border: 3px solid var(--gold-muted);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.2rem; color: var(--gold); font-weight: 700;
+    flex-shrink: 0;
+  }
+  .section-label {
+    font-family: Arial, sans-serif; font-size: .72rem; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 10px;
+  }
+  .section-h2 { font-size: 1.9rem; margin-bottom: 20px; line-height: 1.25; }
+  .bio-text { color: var(--gray-light); font-size: 1rem; margin-bottom: 22px; }
+  .cred-bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 22px; }
+  .cred-bullets li {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-family: Arial, sans-serif; font-size: .9rem; color: var(--gray-light);
+  }
+  .cred-bullets li::before {
+    content: '◆'; color: var(--gold); flex-shrink: 0; font-size: .65rem; margin-top: 5px;
+  }
+
+  /* ── LESSON LEVELS CARDS ── */
+  .levels-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
+  .level-card {
+    background: var(--navy-card);
+    border: 1px solid rgba(201,151,58,.2);
+    border-top: 3px solid var(--gold);
+    border-radius: var(--radius-lg);
+    padding: 30px 26px;
+    display: flex; flex-direction: column;
+    transition: border-color .2s, transform .2s;
+  }
+  .level-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+  .level-tag {
+    font-family: Arial, sans-serif; font-size: .7rem; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 8px;
+  }
+  .level-card h3 { font-size: 1.4rem; margin-bottom: 18px; }
+  .level-bullets { list-style: none; flex: 1; display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+  .level-bullets li {
+    display: flex; align-items: flex-start; gap: 8px;
+    font-family: Arial, sans-serif; font-size: .9rem; color: var(--gray-light);
+  }
+  .level-bullets li::before { content: '→'; color: var(--gold); flex-shrink: 0; }
+  .learn-more {
+    font-family: Arial, sans-serif; font-size: .85rem; color: var(--gold); font-weight: 700;
+    letter-spacing: .5px;
+  }
+  .learn-more:hover { color: var(--gold-light); }
+
+  /* ── LESSON STYLES ── */
+  .styles-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 40px; }
+  .style-card {
+    background: var(--navy-card);
+    border: 1px solid rgba(201,151,58,.15);
+    border-radius: var(--radius-lg);
+    overflow: hidden; display: flex; flex-direction: column;
+  }
+  .style-img {
+    width: 100%; height: 180px; background: var(--placeholder);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gray-text); font-family: Arial, sans-serif; font-size: .82rem;
+  }
+  .style-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
+  .style-body h3 { font-size: 1.2rem; margin-bottom: 10px; }
+  .style-body p { font-family: Arial, sans-serif; font-size: .9rem; color: var(--gray-light); flex: 1; margin-bottom: 20px; }
+  .btn-call {
+    display: inline-block;
+    background: transparent; border: 2px solid var(--gold);
+    color: var(--gold); font-family: Arial, sans-serif; font-weight: 700;
+    font-size: .85rem; padding: 10px 20px; border-radius: var(--radius);
+    letter-spacing: .5px; text-transform: uppercase; align-self: flex-start;
+    transition: background .2s, color .2s;
+  }
+  .btn-call:hover { background: var(--gold); color: #000; text-decoration: none; }
+
+  /* ── VIDEOS ── */
+  .videos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
+  .video-card {
+    border-radius: var(--radius-lg); overflow: hidden;
+    background: var(--navy-card); border: 1px solid rgba(201,151,58,.15);
+  }
+  .video-thumb {
+    width: 100%; aspect-ratio: 16/9; background: var(--placeholder);
+    display: flex; align-items: center; justify-content: center; position: relative;
+  }
+  .play-btn {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: rgba(201,151,58,.85);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; color: #000; padding-left: 4px;
+    box-shadow: 0 0 0 6px rgba(201,151,58,.2);
+  }
+  .video-info { padding: 16px 18px; }
+  .video-info p { font-family: Arial, sans-serif; font-size: .88rem; color: var(--gray-light); margin: 0; }
+  .video-title { font-size: 1rem; color: var(--white); margin-bottom: 4px; }
+
+  /* ── REVIEWS ── */
+  .reviews-header {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 10px; text-align: center; margin-bottom: 40px;
+  }
+  .reviews-rating-row {
+    display: flex; align-items: center; gap: 14px;
+    font-family: Arial, sans-serif;
+  }
+  .g-badge-lg {
+    width: 32px; height: 32px; border-radius: 50%; background: #fff;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-weight: 900; font-size: 1rem; color: #4285f4; font-family: Arial, sans-serif;
+    flex-shrink: 0;
+  }
+  .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .review-card {
+    background: var(--navy-card);
+    border: 1px solid rgba(201,151,58,.18);
+    border-radius: var(--radius-lg); padding: 26px;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .reviewer-row { display: flex; align-items: center; gap: 14px; }
+  .reviewer-avatar {
+    width: 46px; height: 46px; border-radius: 50%;
+    background: var(--gold-muted); flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: .9rem; color: #000;
+    font-family: Arial, sans-serif;
+  }
+  .reviewer-name { font-size: 1rem; font-weight: 600; }
+  .reviewer-sub { font-family: Arial, sans-serif; font-size: .78rem; color: var(--gray-text); }
+  .review-quote {
+    font-family: Georgia, serif; font-size: .93rem; color: var(--gray-light);
+    font-style: italic; line-height: 1.6; border-left: 2px solid var(--gold-muted);
+    padding-left: 14px;
+  }
+  .reviews-footer { text-align: center; margin-top: 32px; font-family: Arial, sans-serif; }
+
+  /* ── FINAL CTA ── */
+  .final-cta {
+    background: linear-gradient(135deg, #0d1929 0%, #1a2a1a 100%);
+    border-top: 1px solid rgba(201,151,58,.2);
+    border-bottom: 1px solid rgba(201,151,58,.2);
+    text-align: center; padding: 80px 24px;
+  }
+  .final-cta h2 { font-size: 2.2rem; margin-bottom: 14px; }
+  .final-cta p {
+    font-family: Arial, sans-serif; color: var(--gray-light);
+    font-size: 1rem; max-width: 500px; margin: 0 auto 36px;
+  }
+  .final-cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #060a12;
+    border-top: 2px solid var(--gold-muted);
+    padding: 40px 24px;
+    text-align: center;
+    font-family: Arial, sans-serif; font-size: .85rem; color: var(--gray-text);
+  }
+  .footer-inner { max-width: 1100px; margin: 0 auto; }
+  .footer-logo { font-size: 1.1rem; font-weight: 700; color: var(--gold); letter-spacing: 2px; margin-bottom: 8px; }
+  .footer-links { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin: 14px 0; }
+  .footer-links a { color: var(--gray-text); }
+  .footer-links a:hover { color: var(--gold); text-decoration: none; }
+  .footer-copy { color: rgba(156,163,175,.6); font-size: .78rem; margin-top: 10px; }
+
+  /* ── Responsive ── */
+  @media (max-width: 860px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-img-wrap { display: none; }
+    .bio-inner { grid-template-columns: 1fr; }
+    .bio-photo { margin: 0 auto; }
+    .levels-grid, .videos-grid { grid-template-columns: 1fr; }
+    .styles-grid, .reviews-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─────────────────────── NAV ─────────────────────── -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">Private<span>Guitar</span></div>
+    <ul class="nav-links">
+      <li><a href="#">About</a></li>
+      <li><a href="#">Lesson Styles</a></li>
+      <li><a href="#">Videos</a></li>
+      <li><a href="#">Reviews</a></li>
+      <li><a href="#">Contact</a></li>
+      <li><a href="#" class="nav-cta">Book a Lesson</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+<!-- ─────────────────────── HERO ─────────────────────── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span>Private 1-on-1 Instruction</span>
+      </div>
+      <h1>Break through your <em>plateau.</em></h1>
+      <p class="hero-sub">Private 1-on-1 instruction in Fort Worth, Keller &amp; Southlake.
+        Beginners through advanced. Kids 10+ welcome.</p>
+
+      <div class="hero-rating">
+        <span class="g-badge">G</span>
+        <span class="stars">★★★★★</span>
+        <strong>5.0</strong>
+        <span style="color:var(--gray-text)">·</span>
+        <span>68 Google reviews</span>
+      </div>
+
+      <div class="hero-ctas">
+        <a href="#" class="btn-primary">Reserve Your Lesson Spot</a>
+        <a href="tel:6825642925" class="btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 17z"/></svg>
+          Call or text (682) 564-2925
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-img-wrap">
+      <img src="hero.png" alt="Derek Neece playing guitar"
+           style="display:block;border-radius:14px;border:2px solid rgba(201,151,58,.3);">
+
+      <div class="hero-cred-col">
+        <!-- Guitar Player -->
+        <div class="hero-cred-cell">
+          <span class="cred-as-seen">As seen in</span>
+          <div style="background:rgba(255,255,255,.92);border-radius:5px;padding:5px 7px;line-height:0;">
+            <img src="GuitaLogo.png" alt="Guitar Player Magazine" style="width:96px;height:auto;display:block;">
+          </div>
+        </div>
+        <!-- 2019 Award -->
+        <div class="hero-cred-cell">
+          <span class="cred-as-seen">Award</span>
+          <div style="background:rgba(255,255,255,.92);border-radius:5px;padding:4px;line-height:0;">
+            <img src="2019badge.png" alt="Lessons.com Best Teacher 2019" style="width:66px;height:auto;display:block;">
+          </div>
+        </div>
+        <!-- 30+ years -->
+        <div class="hero-cred-cell">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color:var(--gold);flex-shrink:0;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <span style="font-family:Arial,sans-serif;font-size:.68rem;color:var(--gray-light);text-transform:uppercase;letter-spacing:.5px;line-height:1.5;">30+ Years<br>Professional</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────── BIO ─────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="bio-inner">
+      <div>
+        <img src="hero.png" alt="Derek Neece"
+             style="width:180px;height:180px;border-radius:50%;border:5px solid var(--gold);object-fit:cover;object-position:50% 22%;display:block;">
+      </div>
+      <div>
+        <div class="section-label">Your Instructor</div>
+        <h2 class="section-h2">Meet Derek Neece</h2>
+        <p class="bio-text">
+          With over 30 years of professional experience, Derek Neece has guided hundreds of students
+          from their very first chord to performing on stage. He specializes in adult learners —
+          people with busy schedules who still want to make real, measurable progress. Whether
+          you're picking up a guitar for the first time or returning after years away, Derek meets
+          you where you are and builds a curriculum around your goals and favorite music.
+          His teaching philosophy is simple: no wasted time, no cookie-cutter methods — just
+          results.
+        </p>
+
+        <ul class="cred-bullets">
+          <li>Featured in <strong>Guitar Player</strong> magazine</li>
+          <li>Worked with <strong>Sterling Winfield</strong> (Pantera's producer) and <strong>Mitch Marine</strong> (Smash Mouth, Dwight Yoakam)</li>
+          <li>Featured on <strong>TCN national broadcast</strong> (44 million households)</li>
+          <li><strong>Lessons.com Best Teacher Award</strong> — 2019</li>
+        </ul>
+
+        <a href="#" class="gold" style="font-family:Arial,sans-serif;font-size:.92rem;font-weight:700;">
+          Read Derek's full story →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────── LESSON LEVELS ─────────────────────── -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-label" style="text-align:center;">1-on-1 Private Lessons</div>
+    <h2 class="section-h2" style="text-align:center;">Lesson Levels</h2>
+
+    <div class="levels-grid">
+
+      <div class="level-card">
+        <div class="level-tag">Level 01</div>
+        <h3>Beginner</h3>
+        <ul class="level-bullets">
+          <li>Play your favorite songs in 6–8 weeks</li>
+          <li>Proper hand position from day one</li>
+          <li>Help finding your first guitar</li>
+        </ul>
+        <a href="#" class="learn-more">Learn more →</a>
+      </div>
+
+      <div class="level-card">
+        <div class="level-tag">Level 02</div>
+        <h3>Intermediate</h3>
+        <ul class="level-bullets">
+          <li>Fix the bad habits YouTube taught you</li>
+          <li>Fretboard logic &amp; ear training</li>
+          <li>Build solos, not just learn them</li>
+        </ul>
+        <a href="#" class="learn-more">Learn more →</a>
+      </div>
+
+      <div class="level-card">
+        <div class="level-tag">Level 03</div>
+        <h3>Advanced</h3>
+        <ul class="level-bullets">
+          <li>CAGED &amp; modal systems applied</li>
+          <li>Sweep, hybrid, legato techniques</li>
+          <li>Improvisation &amp; advanced theory</li>
+        </ul>
+        <a href="#" class="learn-more">Learn more →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────── LESSON STYLES ─────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="section-label" style="text-align:center;">What We Teach</div>
+    <h2 class="section-h2" style="text-align:center;">Lesson Styles</h2>
+
+    <div class="styles-grid">
+
+      <div class="style-card">
+        <img src="blues.jpg" alt="Blues guitar lesson" class="style-img" style="object-fit:cover;">
+        <div class="style-body">
+          <h3>Blues</h3>
+          <p>Learn to play with feeling! Beginner-Advanced Classes. Stevie Ray Vaughan, John Mayer, BB King, Albert King, Eric Clapton, Buddy Guy, Billy Gibbons, Lightnin' Hopkins and much more. Learn what it takes to play Blues Guitar with Power and Confidence.</p>
+          <a href="#" class="btn-primary" style="align-self:flex-start;font-size:.85rem;padding:12px 22px;">Reserve Your Lesson Spot</a>
+          <p style="font-family:Arial,sans-serif;font-size:.8rem;color:var(--gray-text);margin-top:10px;margin-bottom:0;">or call/text <a href="tel:6825642925" style="color:var(--gray-text);">(682) 564-2925</a></p>
+        </div>
+      </div>
+
+      <div class="style-card">
+        <img src="Acoustic.jpg" alt="Acoustic guitar lesson" class="style-img" style="object-fit:cover;">
+        <div class="style-body">
+          <h3>Acoustic</h3>
+          <p>Beginner, Intermediate and Advanced Guitar technique classes. Fingerstyle and Flatpicking styles. Expand your chord vocabulary, memorize your favorite songs. Using dynamics to create emotion, learn correct fingering and technique.</p>
+          <a href="#" class="btn-primary" style="align-self:flex-start;font-size:.85rem;padding:12px 22px;">Reserve Your Lesson Spot</a>
+          <p style="font-family:Arial,sans-serif;font-size:.8rem;color:var(--gray-text);margin-top:10px;margin-bottom:0;">or call/text <a href="tel:6825642925" style="color:var(--gray-text);">(682) 564-2925</a></p>
+        </div>
+      </div>
+
+      <div class="style-card">
+        <img src="rock.jpg" alt="Classic rock and metal guitar lesson" class="style-img" style="object-fit:cover;">
+        <div class="style-body">
+          <h3>Classic Rock &amp; Metal</h3>
+          <p>Learn note-for-note solos like Hotel California, Stairway to Heaven and Freebird. Study in the styles of Hendrix, Page, Clapton, Angus Young, Billy Gibbons, Gilmour and many others. Learn about the Classic Rock scales and how to use them to create musically intense solos.</p>
+          <a href="#" class="btn-primary" style="align-self:flex-start;font-size:.85rem;padding:12px 22px;">Reserve Your Lesson Spot</a>
+          <p style="font-family:Arial,sans-serif;font-size:.8rem;color:var(--gray-text);margin-top:10px;margin-bottom:0;">or call/text <a href="tel:6825642925" style="color:var(--gray-text);">(682) 564-2925</a></p>
+        </div>
+      </div>
+
+      <div class="style-card">
+        <img src="kids.jpg" alt="Kids guitar lesson" class="style-img" style="object-fit:cover;">
+        <div class="style-body">
+          <h3>Kids 10+</h3>
+          <p>Kids ages 10-14 are at a great age to start learning a musical instrument. Many times, Parents love to accompany their child in lessons, so I offer Kids Lessons or Group Lessons as an option. Electric or Acoustic. Start Today!</p>
+          <a href="#" class="btn-primary" style="align-self:flex-start;font-size:.85rem;padding:12px 22px;">Reserve Your Lesson Spot</a>
+          <p style="font-family:Arial,sans-serif;font-size:.8rem;color:var(--gray-text);margin-top:10px;margin-bottom:0;">or call/text <a href="tel:6825642925" style="color:var(--gray-text);">(682) 564-2925</a></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────── VIDEOS ─────────────────────── -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-label" style="text-align:center;">Watch &amp; Listen</div>
+    <h2 class="section-h2" style="text-align:center;">Hear Derek play</h2>
+
+    <div class="videos-grid">
+
+      <div class="video-card">
+        <div class="video-thumb">
+          <div class="play-btn">▶</div>
+        </div>
+        <div class="video-info">
+          <p class="video-title">Hotel California</p>
+          <p>Eagles classic — fingerstyle arrangement</p>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-thumb">
+          <div class="play-btn">▶</div>
+        </div>
+        <div class="video-info">
+          <p class="video-title">Little Wing</p>
+          <p>Jimi Hendrix — chord-melody cover</p>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-thumb">
+          <div class="play-btn">▶</div>
+        </div>
+        <div class="video-info">
+          <p class="video-title">SRV — Testify</p>
+          <p>Stevie Ray Vaughan blues tribute</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────── REVIEWS ─────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="reviews-header">
+      <div class="section-label">What Students Say</div>
+      <div class="reviews-rating-row">
+        <span class="g-badge-lg">G</span>
+        <span class="stars" style="font-size:1.3rem;">★★★★★</span>
+        <span style="font-size:1.3rem;font-weight:700;">5.0</span>
+        <span style="color:var(--gray-text);">·</span>
+        <span style="font-family:Arial,sans-serif;">Based on 68 Google reviews</span>
+      </div>
+    </div>
+
+    <div class="reviews-grid">
+
+      <div class="review-card">
+        <div class="reviewer-row">
+          <div class="reviewer-avatar">HC</div>
+          <div>
+            <div class="reviewer-name">Howard Cheatham</div>
+            <div class="reviewer-sub">Google Review</div>
+          </div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p class="review-quote">"Probably the best guitar instructor in North Texas.
+          I drive 40+ minutes through traffic for his class…"</p>
+      </div>
+
+      <div class="review-card">
+        <div class="reviewer-row">
+          <div class="reviewer-avatar" style="background:#5c4a8a;">JM</div>
+          <div>
+            <div class="reviewer-name">Jon Martin</div>
+            <div class="reviewer-sub">Google Review</div>
+          </div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p class="review-quote">"I am now accepted in the Berklee College of Music.
+          Wise choice to seek guidance from Derek…"</p>
+      </div>
+
+      <div class="review-card">
+        <div class="reviewer-row">
+          <div class="reviewer-avatar" style="background:#2a6a4a;">DA</div>
+          <div>
+            <div class="reviewer-name">David Abercrombie</div>
+            <div class="reviewer-sub">Google Review</div>
+          </div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p class="review-quote">"Simply one of the best guitar players I've ever met.
+          I've been taking lessons for years and will continue to do so…"</p>
+      </div>
+
+    </div>
+
+    <div class="reviews-footer">
+      <a href="#" style="font-size:.92rem;font-weight:700;">Read all reviews on Google →</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────── FINAL CTA ─────────────────────── -->
+<div class="final-cta">
+  <h2>Ready to make <span class="gold">real progress?</span></h2>
+  <p>One lesson can change how you hear and play music forever.
+     Spots are limited — reach out today.</p>
+  <div class="final-cta-btns">
+    <a href="#" class="btn-primary">Reserve Your Lesson Spot</a>
+    <a href="tel:6825642925" class="btn-secondary" style="border-color:rgba(255,255,255,.25);">
+      Call or text (682) 564-2925
+    </a>
+  </div>
+</div>
+
+
+<!-- ─────────────────────── FOOTER ─────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Private Guitar</div>
+    <p style="font-size:.85rem;color:var(--gray-text);margin-bottom:4px;">
+      Derek Neece · Fort Worth, Keller &amp; Southlake, TX
+    </p>
+    <p>
+      <a href="tel:6825642925" style="color:var(--gold);">(682) 564-2925</a>
+    </p>
+    <nav class="footer-links">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Lessons</a>
+      <a href="#">Videos</a>
+      <a href="#">Reviews</a>
+      <a href="#">Contact</a>
+    </nav>
+    <div class="footer-copy">
+      &copy; 2026 Private Guitar / Derek Neece. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
